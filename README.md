@@ -1,4 +1,4 @@
-# vue_shop2
+# Shop Admin
 
 ## Project setup
 ```

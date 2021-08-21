@@ -36,12 +36,12 @@ import { getLoginData } from 'service/login.js'
 
 export default {
   name: 'LoginForm',
-  data () {
+  data() {
     return {
       // 表单内容
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       loginFormRules: {
         username: [
@@ -57,26 +57,39 @@ export default {
   },
   methods: {
     // 点击重置按钮，重置表单
-    resetLoginForm () {
+    resetLoginForm() {
       this.$refs.loginFormRef.resetFields()
     },
     // 点击登录，先校验表单信息，校验通过vaild就为true，并发送login请求
-    login () {
-      this.$refs.loginFormRef.validate(vaild => {
+    login() {
+      this.$refs.loginFormRef.validate(async vaild => {
         if (!vaild) return
-        this._getLoginData(this.loginForm)
-      })
-    },
+        const { data: res } = await getLoginData(this.loginForm)
+        // console.log(res)
+        if (res.meta.status !== 200) return this.$message.error('登录失败')
+        this.$message.success('登录成功')
+        /**
+         *  1,将登陆成功之后的 token ，保存到客户端的 sessionStorage 中
+         *    - 项目中除了登陆之外的其他API接口，必须在登录之后才能访问
+         *    - token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
+         */
 
-    // login请求
-    _getLoginData (data) {
-      getLoginData(data).then(res => {
-        if (res.data.meta.status !== 200) return console.log('登录失败')
-        console.log('登录成功')
-      }).catch(err => {
-        console.log(err)
+        // 保存登录token
+        window.sessionStorage.setItem('token', res.data.token)
+        // 通过编程式导航跳转到后台主页，路由地址是 /home
+        this.$router.push('/home')
       })
     }
+
+    // login请求
+    // _getLoginData (data) {
+    //   getLoginData(data).then(res => {
+    //     if (res.data.meta.status !== 200) return console.log('登录失败')
+    //     console.log('登录成功')
+    //   }).catch(err => {
+    //     console.log(err)
+    //   })
+    // }
   }
 }
 </script>

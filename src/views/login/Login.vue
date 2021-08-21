@@ -9,7 +9,7 @@ import LoginBox from './childComps/LoginBox.vue'
 export default {
   components: { LoginBox },
   name: 'Login',
-  data () {
+  data() {
     return {
 
     }

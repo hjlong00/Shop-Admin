@@ -1,5 +1,5 @@
 /* 全局样式表 */
-@import "~assets/fonts/iconfont.css";
+@import '~assets/fonts/iconfont.css';
 
 html,
 body,
@@ -7,4 +7,18 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+}
+body .el-breadcrumb {
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+body .el-card {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
+}
+body .el-table {
+  margin-top: 15px;
+  font-size: 12px;
+}
+body .el-pagination {
+  margin-top: 15px;
 }

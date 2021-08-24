@@ -1,26 +1,15 @@
 <template>
   <div id="login-form">
-    <el-form
-      ref="loginFormRef"
-      :rules="loginFormRules"
-      :model="loginForm"
-      label-width="0px"
-      class="el-from"
-    >
+    <el-form ref="loginFormRef" :rules="loginFormRules" :model="loginForm" label-width="0px"
+      class="el-from">
       <!-- 用户名 -->
       <el-form-item prop="username">
-        <el-input
-          v-model="loginForm.username"
-          prefix-icon="iconfont icon-user"
-        ></el-input>
+        <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
       </el-form-item>
       <!-- 密码 -->
       <el-form-item prop="password">
-        <el-input
-          v-model="loginForm.password"
-          prefix-icon="iconfont icon-3702mima"
-          type="password"
-        ></el-input>
+        <el-input v-model="loginForm.password" prefix-icon="iconfont icon-3702mima" type="password">
+        </el-input>
       </el-form-item>
       <!-- 登录按钮 -->
       <el-form-item class="btns">
@@ -60,18 +49,18 @@ export default {
     resetLoginForm() {
       this.$refs.loginFormRef.resetFields()
     },
-    // 点击登录，先校验表单信息，校验通过vaild就为true，并发送login请求
+    // 点击登录，先校验表单信息，校验通过valid就为true，并发送login请求
     login() {
-      this.$refs.loginFormRef.validate(async vaild => {
-        if (!vaild) return
+      this.$refs.loginFormRef.validate(async valid => {
+        if (!valid) return
         const { data: res } = await getLoginData(this.loginForm)
         // console.log(res)
         if (res.meta.status !== 200) return this.$message.error('登录失败')
         this.$message.success('登录成功')
         /**
-         *  1,将登陆成功之后的 token ，保存到客户端的 sessionStorage 中
-         *    - 项目中除了登陆之外的其他API接口，必须在登录之后才能访问
-         *    - token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
+         * | 1,将登陆成功之后的 token ，保存到客户端的 sessionStorage 中
+         * |   - 项目中除了登陆之外的其他API接口，必须在登录之后才能访问
+         * |   - token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
          */
 
         // 保存登录token
@@ -80,7 +69,6 @@ export default {
         this.$router.push('/home')
       })
     }
-
     // login请求
     // _getLoginData (data) {
     //   getLoginData(data).then(res => {

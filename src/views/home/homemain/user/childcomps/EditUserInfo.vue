@@ -69,7 +69,7 @@ export default {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return
         const { data: res } = await editUserInfo(this.editForm)
-        if (res.meta.status !== 200) return this.$message.error('更新用户信息成功')
+        if (res.meta.status !== 200) return this.$message.error('更新用户信息失败')
         this.$message.success('更新用户信息成功')
         // 添加完用户，关闭对话框
         this.editDialogVisible = false

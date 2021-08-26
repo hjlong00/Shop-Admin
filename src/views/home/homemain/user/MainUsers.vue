@@ -23,24 +23,26 @@
       </el-row>
       <!-- 用户列表区 -->
       <el-table :data="userList" border stripe>
-        <el-table-column type="index"> </el-table-column>
-        <el-table-column label="姓名" prop="username"></el-table-column>
-        <el-table-column label="邮箱" prop="email"></el-table-column>
-        <el-table-column label="电话" prop="mobile"></el-table-column>
-        <el-table-column label="角色" prop="role_name"></el-table-column>
+        <el-table-column type="index" />
+        <el-table-column label="姓名" prop="username" />
+        <el-table-column label="邮箱" prop="email" />
+        <el-table-column label="电话" prop="mobile" />
+        <el-table-column label="角色" prop="role_name" />
         <el-table-column label="状态">
           <template slot-scope="scope">
             <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)" />
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="300px">
           <template slot-scope="scope">
             <el-button size="mini" type="primary" icon="el-icon-edit"
               @click="showEditDialog(scope.row.id)" />
             <el-button size="mini" type="danger" icon="el-icon-delete"
               @click="removeUserById(scope.row.id)" />
+            <!-- 分配角色, <el-tooltip>是鼠标悬停提示 -->
             <el-tooltip effect="light" content="分配角色" placement="top" :enterable="false">
-              <el-button size="mini" type="warning" icon="el-icon-setting" />
+              <el-button size="mini" type="warning" icon="el-icon-setting"
+                @click="setRole(scope.row)" />
             </el-tooltip>
           </template>
         </el-table-column>
@@ -53,21 +55,25 @@
       </el-pagination>
     </el-card>
     <!--添加用户的对话框  -->
-    <add-user ref="addUserRef" @addNewUser="refreshUserList" />
+    <add-user ref="addUserRef" @addNewUser="_getUserList" />
     <!-- 修改用户信息对话框 -->
-    <edit-user-info ref="editUserInfoRef" @editedInfo="refreshUserList" />
+    <edit-user-info ref="editUserInfoRef" @editedInfo="_getUserList" />
+    <!-- 分配用户角色对话框 -->
+    <set-user-role ref="setUserRoleRef" @setRole="_getUserList" />
   </div>
 </template>
 
 <script>
-import AddUser from './childcomps/AddUser.vue'
-import EditUserInfo from './childcomps/EditUserInfo.vue'
+import AddUser from './childComps/AddUser'
+import EditUserInfo from './childComps/EditUserInfo'
+import SetUserRole from './childComps/SetUserRole'
 
 import { getUserList, changUserState, getUserInfo, delUser } from 'service/users.js'
+import { getRolesList } from 'service/power.js'
 
 export default {
   name: 'MainUsers',
-  components: { AddUser, EditUserInfo },
+  components: { AddUser, EditUserInfo, SetUserRole },
   data() {
     return {
       // 获取用户列表的参数对象
@@ -85,12 +91,12 @@ export default {
   },
   created() {
     // 获取用户列表数据
-    this._getUserList(this.queryInfo)
+    this._getUserList()
   },
   methods: {
     // 获取用户列表请求方法
-    async _getUserList(params) {
-      const { data: res } = await getUserList(params)
+    async _getUserList() {
+      const { data: res } = await getUserList(this.queryInfo)
       // console.log(res)
       if (res.meta.status !== 200) return this.$message.error('获取用户列表失败！')
       this.userList = res.data.users
@@ -99,13 +105,13 @@ export default {
     // 监听 pagesize 改变的事件
     handleSizeChange(newsize) {
       this.queryInfo.pagesize = newsize
-      this._getUserList(this.queryInfo)
+      this._getUserList()
     },
     // 监听 页码值 改变的事件
     handleCurrentChange(newpage) {
       // console.log(newpage)
       this.queryInfo.pagenum = newpage
-      this._getUserList(this.queryInfo)
+      this._getUserList()
     },
     // 修改用户的状态
     async userStateChanged(userinfo) {
@@ -120,10 +126,10 @@ export default {
     showAddDialoge() {
       this.$refs.addUserRef.addDialogVisible = true
     },
-    // 监听到子组件 添加了新用户/修改了用户信息 事件，然后刷新用户列表
-    refreshUserList() {
-      this._getUserList(this.queryInfo)
-    },
+    // // 监听到子组件 添加了新用户/修改了用户信息 事件，然后刷新用户列表
+    // refreshUserList() {
+    //   this._getUserList()
+    // },
     /**
      * | showEditDialog() 解说
      * | 1，调用用户id查询用户信息的请求方法
@@ -164,10 +170,21 @@ export default {
       // 发起请求
       const { data: res } = await delUser(id)
       if (res.meta.status !== 200) return this.$message.error('删除用户失败')
-      this.$message.warning('删除成功')
+      this.$message.warning('删除用户成功')
 
       // 刷新用户列表
-      this._getUserList(this.queryInfo)
+      this._getUserList()
+    },
+    /**
+     * | 设置用户角色
+     * | 先通过scope.row获取当前用户信息
+    */
+    async setRole(userInfo) {
+      this.$refs.setUserRoleRef.userInfo = userInfo
+      const { data: res } = await getRolesList()
+      if (res.meta.status !== 200) return this.$message.error('获取角色列表失败')
+      this.$refs.setUserRoleRef.rolesList = res.data
+      this.$refs.setUserRoleRef.setUserRoleDialog = true
     }
   }
 }

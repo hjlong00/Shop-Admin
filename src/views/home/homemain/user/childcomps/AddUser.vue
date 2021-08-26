@@ -96,7 +96,7 @@ export default {
         // 先验证表单内容是否通过初步验证
         if (!valid) return
         const { data: res } = await addUser(this.addForm)
-        if (res.meta.status !== 201) return this.$message.error(res.meta.msg)
+        if (res.meta.status !== 201) return this.$message.error('添加用户失败')
         this.$message.success('添加用户成功')
         // 添加完用户，关闭对话框
         this.addDialogVisible = false

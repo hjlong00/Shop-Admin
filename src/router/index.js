@@ -5,6 +5,8 @@ const Login = () => import('views/login/Login')
 const Home = () => import('views/home/Home')
 const Welcome = () => import('views/home/homemain/Welcome')
 const MainUsers = () => import('views/home/homemain/user/MainUsers')
+const RightsList = () => import('views/home/homemain/power/rights/RightsList')
+const RolesList = () => import('views/home/homemain/power/roles/RolesList')
 
 Vue.use(VueRouter)
 
@@ -18,7 +20,9 @@ const routes = [
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: Welcome },
-      { path: '/users', component: MainUsers }
+      { path: '/users', component: MainUsers },
+      { path: '/rights', component: RightsList },
+      { path: '/roles', component: RolesList }
     ]
   }
 ]
@@ -27,7 +31,7 @@ const router = new VueRouter({
   routes
 })
 
-/**
+/** ------------------------------------------------
  *  | 挂载路由守卫
  *  | to   将要访问的路径
  *  | from 代表从哪个路径跳转而来

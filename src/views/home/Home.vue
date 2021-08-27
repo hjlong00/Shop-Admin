@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import HomeHeaderInfo from '../../components/home/HomeHeaderInfo.vue'
-import HomeAsideMenu from '../../components/home/HomeAsideMenu.vue'
+import HomeHeaderInfo from 'components/home/HomeHeaderInfo.vue'
+import HomeAsideMenu from 'components/home/HomeAsideMenu.vue'
 
 import { getMenuList } from 'service/menus.js'
 

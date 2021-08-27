@@ -23,3 +23,14 @@ body .el-table {
 body .el-pagination {
   margin-top: 15px;
 }
+body .el-cascader-menu {
+  height: 250px;
+}
+/* 改变级联选择器样式，隐藏默认的圆圈，扩大点击范围 */
+.el-cascader-menu .el-radio {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin-left: -20px;
+  opacity: 0;
+}

@@ -1,6 +1,6 @@
 <template>
   <el-dialog title="修改用户信息" :visible.sync="editDialogVisible" width="30%" @close="editDialogClosed">
-    <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
+    <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
       <el-form-item label="用户名">
         <el-input v-model="editForm.username" disabled></el-input>
       </el-form-item>

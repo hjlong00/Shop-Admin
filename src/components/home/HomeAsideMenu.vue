@@ -10,16 +10,8 @@
     // |  collapse-transition:是否开启折叠动画，默认true
     // |  router: 是否使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转
      -->
-    <el-menu
-      background-color="#333744"
-      text-color="#fff"
-      active-text-color="#409eff"
-      unique-opened
-      :collapse="isCollapse"
-      :collapse-transition="false"
-      router
-      :default-active="activePath"
-    >
+    <el-menu background-color="#333744" text-color="#fff" active-text-color="#409eff" unique-opened
+      :collapse="isCollapse" :collapse-transition="false" router :default-active="activePath">
       <!-- 一级菜单 -->
       <!--
         //| 知识点：这里的index只接收字符串，但是tiem.id是数字类型，只要在后面加上 + '' 拼接，就转换成字符串了
@@ -34,12 +26,8 @@
         </template>
 
         <!-- 二级菜单模板区 -->
-        <el-menu-item
-          :index="'/' + subItem.path"
-          v-for="subItem in item.children"
-          :key="subItem.id"
-          @click="saveNavState('/' + subItem.path)"
-        >
+        <el-menu-item :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id"
+          @click="saveNavState('/' + subItem.path)">
           <!-- 图标 -->
           <i class="el-icon-menu"></i>
           <!-- 文本 -->

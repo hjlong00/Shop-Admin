@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import {
-  Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader
+  Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane
 } from 'element-ui'
 
 Vue.use(Button)
@@ -45,7 +45,13 @@ Vue.use(Select)
 Vue.use(Option)
 // Cascader 级联选择器
 Vue.use(Cascader)
+// Alert 警告
+Vue.use(Alert)
+// Tabs标签页
+Vue.use(Tabs)
+Vue.use(TabPane)
 
-// 弹框提示组件
+// 弹框消息提示组件
 Vue.prototype.$message = Message
+//  MessageBox 弹框
 Vue.prototype.$confirm = MessageBox.confirm

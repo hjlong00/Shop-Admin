@@ -6,7 +6,7 @@
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <!-- 卡片试图区 -->
+    <!-- 卡片视图区 -->
     <el-card>
       <!--  搜索与添加区域 -->
       <el-row :gutter="20">

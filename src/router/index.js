@@ -8,6 +8,7 @@ const MainUsers = () => import('views/home/homemain/user/MainUsers')
 const RightsList = () => import('views/home/homemain/power/rights/RightsList')
 const RolesList = () => import('views/home/homemain/power/roles/RolesList')
 const GoodsCategory = () => import('views/home/homemain/goods/category/GoodsCategory')
+const GoodsParams = () => import('views/home/homemain/goods/params/GoodsParams')
 
 Vue.use(VueRouter)
 
@@ -24,7 +25,8 @@ const routes = [
       { path: '/users', component: MainUsers },
       { path: '/rights', component: RightsList },
       { path: '/roles', component: RolesList },
-      { path: '/categories', component: GoodsCategory }
+      { path: '/categories', component: GoodsCategory },
+      { path: '/params', component: GoodsParams }
     ]
   }
 ]

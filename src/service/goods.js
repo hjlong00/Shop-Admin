@@ -89,3 +89,48 @@ export function editAttrVals(id, attrId, name, sel, vals) {
     data: { attr_name: name, attr_sel: sel, attr_vals: vals }
   })
 }
+/**
+ * ====================================================================
+ * 商品管理-商品列表请求
+ */
+// 获取商品列表
+export function getGoodsList(params) {
+  return request({
+    // 请求方法 ， 不写的话 默认是 'get'
+    url: '/goods',
+    params
+  })
+}
+// 根据商品ID发起查询请求
+export function getInfoById(id) {
+  return request({
+    // 请求方法 ， 不写的话 默认是 'get'
+    url: '/goods/' + id
+  })
+}
+// 根据商品ID发起删除请求
+export function removeById(id) {
+  return request({
+    // 请求方法 ， 不写的话 默认是 'get'
+    method: 'delete',
+    url: '/goods/' + id
+  })
+}
+// 添加商品请求
+export function addGoods(data) {
+  return request({
+    // 请求方法 ， 不写的话 默认是 'get'
+    method: 'post',
+    url: '/goods/',
+    data
+  })
+}
+// 根据商品ID发起修改请求
+export function editGoods(data) {
+  return request({
+    // 请求方法 ， 不写的话 默认是 'get'
+    method: 'put',
+    url: '/goods/' + data.goods_id,
+    data
+  })
+}

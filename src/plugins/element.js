@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import {
-  Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane
+  Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane, Steps, Step, Checkbox, CheckboxGroup, Upload
 } from 'element-ui'
 
 Vue.use(Button)
@@ -50,6 +50,14 @@ Vue.use(Alert)
 // Tabs标签页
 Vue.use(Tabs)
 Vue.use(TabPane)
+// 步骤进度条
+Vue.use(Steps)
+Vue.use(Step)
+// 复选框
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+// 图片上传
+Vue.use(Upload)
 
 // 弹框消息提示组件
 Vue.prototype.$message = Message

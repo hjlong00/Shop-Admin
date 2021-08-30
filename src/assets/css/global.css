@@ -34,3 +34,12 @@ body .el-cascader-menu {
   margin-left: -20px;
   opacity: 0;
 }
+body .el-steps {
+  margin: 15px auto;
+}
+body .el-step__title {
+  font-size: 13px;
+}
+body .ql-editor {
+  min-height: 300px;
+}

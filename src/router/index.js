@@ -9,6 +9,9 @@ const RightsList = () => import('views/home/homemain/power/rights/RightsList')
 const RolesList = () => import('views/home/homemain/power/roles/RolesList')
 const GoodsCategory = () => import('views/home/homemain/goods/category/GoodsCategory')
 const GoodsParams = () => import('views/home/homemain/goods/params/GoodsParams')
+const GoodsList = () => import('views/home/homemain/goods/goodslist/GoodsList')
+const AddGoods = () => import('views/home/homemain/goods/goodslist/AddGoods')
+const EditGoods = () => import('views/home/homemain/goods/goodslist/EditGoods')
 
 Vue.use(VueRouter)
 
@@ -26,7 +29,10 @@ const routes = [
       { path: '/rights', component: RightsList },
       { path: '/roles', component: RolesList },
       { path: '/categories', component: GoodsCategory },
-      { path: '/params', component: GoodsParams }
+      { path: '/params', component: GoodsParams },
+      { path: '/goods', component: GoodsList },
+      { path: '/goods/add', component: AddGoods },
+      { path: '/goods/:id', component: EditGoods }
     ]
   }
 ]

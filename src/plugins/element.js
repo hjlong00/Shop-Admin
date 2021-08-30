@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import {
-  Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane, Steps, Step, Checkbox, CheckboxGroup, Upload
+  Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane, Steps, Step, Checkbox, CheckboxGroup, Upload, Timeline, TimelineItem
 } from 'element-ui'
 
 Vue.use(Button)
@@ -58,6 +58,9 @@ Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
 // 图片上传
 Vue.use(Upload)
+// timeline 时间线
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 
 // 弹框消息提示组件
 Vue.prototype.$message = Message

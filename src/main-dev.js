@@ -1,3 +1,4 @@
+// 开发入口
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -11,6 +12,10 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
+
+// 加载进度条的css样式
+import 'nprogress/nprogress.css'
+
 // 注册为全局可用组件
 Vue.use(VueQuillEditor)
 
